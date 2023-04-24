@@ -1,0 +1,3 @@
+Self-trained MNIST ReLU NN
+.pb model, the structure is 784-50-50-10, epsilon=0.05.
+Use the same 100 images as for other MNIST models

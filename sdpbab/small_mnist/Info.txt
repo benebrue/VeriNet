@@ -1,0 +1,1 @@
+Contains the small MNIST models from the Raghunathan paper converted to ONNX by using VeriNet

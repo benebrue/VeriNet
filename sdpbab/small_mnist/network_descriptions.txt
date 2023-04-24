@@ -1,0 +1,31 @@
+###########################################
+nips_lp
+###########################################
+(0): Identity()
+(1): Linear(in_features=784, out_features=500, bias=True)
+(2): ReLU()
+(3): Linear(in_features=500, out_features=10, bias=True)
+(4): Identity()
+
+###########################################
+nips_pgd
+###########################################
+
+(0): Identity()
+(1): Linear(in_features=784, out_features=200, bias=True)
+(2): ReLU()
+(3): Linear(in_features=200, out_features=100, bias=True)
+(4): ReLU()
+(5): Linear(in_features=100, out_features=50, bias=True)
+(6): ReLU()
+(7): Linear(in_features=50, out_features=10, bias=True)
+(8): Identity()
+
+###########################################
+nips_sdp
+###########################################
+(0): Identity()
+(1): Linear(in_features=784, out_features=500, bias=True)
+(2): ReLU()
+(3): Linear(in_features=500, out_features=10, bias=True)
+(4): Identity()

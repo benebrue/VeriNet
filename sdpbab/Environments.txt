@@ -1,0 +1,2 @@
+sdplp2 has all the packages required to run VeriNet
+sdplp has the torchvision package which may be necessary to save some MNIST images

@@ -1,0 +1,5 @@
+Models are taken from: Li, et al. SoK: Certified Robustness for Deep Neural Networks, arxiv 2020.
+
+Both are fully-connected feedforward ReLU networks with architecture: 784-7*1024-10
+mnist_G_certadv_1: epsilon=0.1
+mnist_G_certadv_2: epsilon=0.3

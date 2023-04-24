@@ -1,0 +1,7 @@
+Models are taken from: Li, et al. SoK: Certified Robustness for Deep Neural Networks, arxiv 2020.
+
+All cifar10 are fully-connected feedforward ReLU networks, where
+
+cifar10_A_certadv_2255: 2 hidden layer, 20 neurons each hidden layer, epsilon=2/255
+cifar10_B_certadv_2255: 3 hidden layer, 100 neurons each hidden layer, epsilon=2/255
+
