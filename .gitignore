@@ -10,6 +10,8 @@ resources/images/cifar10_torch/
 resources/models/onnx/vnn21
 evaluation/benchmark_results/
 *logs/
+sdpbab/data/
+qpcut/data/
 
 .idea
 *tmp*
