@@ -1,9 +1,17 @@
 import os
+import sys
 import pickle
 import time
 import numpy as np
 import gurobipy as gp
 from gurobipy import GRB
+
+# manually add VeriNet root directory to the $PYTHONPATH
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# print(SCRIPT_DIR)
+sys.path.append(SCRIPT_DIR)
+# print(sys.path)
+
 from qpcut.utils.compressor import compress_nn
 from qpcut.utils.constructor import construct_model
 from qpcut.utils.propagate_input import propagate_input
@@ -12,7 +20,7 @@ dataset = "nips_lp"
 epsilon = 0.1
 n_samples = 1
 n_classes = 10
-add_quadratic_cuts = False
+add_quadratic_cuts = True
 
 base_path = os.path.join("data", "export", dataset + "_" + str(epsilon))
 total_time = 0
@@ -80,7 +88,7 @@ for i in range(n_samples):
 
             # Optimise model
             # m.write("before.lp")  # output model to file
-            m.setParam("OutputFlag", 0)  # disable verbose solver logging
+            # m.setParam("OutputFlag", 0)  # disable verbose solver logging
             optimisation_start = time.time()
             m.optimize()
             t0 = time.time() - optimisation_start
