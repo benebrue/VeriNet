@@ -14,7 +14,10 @@ import pickle
 
 # manually add VeriNet root directory to the $PYTHONPATH
 SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # print(SCRIPT_DIR)
+
+>>>>>>> a428b410534425253826fad60552e9304b2cfb3f
 sys.path.append(SCRIPT_DIR)
 # print(sys.path)
 

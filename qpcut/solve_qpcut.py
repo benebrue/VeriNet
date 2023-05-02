@@ -88,7 +88,7 @@ for i in range(n_samples):
 
             # Optimise model
             # m.write("before.lp")  # output model to file
-            m.setParam("OutputFlag", 0)  # disable verbose solver logging
+            # m.setParam("OutputFlag", 0)  # disable verbose solver logging
             optimisation_start = time.time()
             m.optimize()
             t0 = time.time() - optimisation_start
