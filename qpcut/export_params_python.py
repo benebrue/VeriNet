@@ -6,10 +6,17 @@ The resulting data is exported to separate
 """
 
 import os
+import sys
 import torch
 import torchvision
 import numpy as np
 import pickle
+
+# manually add VeriNet root directory to the $PYTHONPATH
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# print(SCRIPT_DIR)
+sys.path.append(SCRIPT_DIR)
+# print(sys.path)
 
 from verinet.parsers.onnx_parser import ONNXParser
 from sdpbab.calculate_bounds import BCalculator
