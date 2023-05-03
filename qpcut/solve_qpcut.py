@@ -20,7 +20,7 @@ dataset = "nips_sdp"
 epsilon = 0.1
 n_samples = 100
 n_classes = 10
-add_quadratic_cuts = False
+add_quadratic_cuts = True
 
 base_path = os.path.join("data", "export", dataset + "_" + str(epsilon))
 total_time = 0
