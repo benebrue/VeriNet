@@ -17,7 +17,6 @@ SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # print(SCRIPT_DIR)
 
->>>>>>> a428b410534425253826fad60552e9304b2cfb3f
 sys.path.append(SCRIPT_DIR)
 # print(sys.path)
 
@@ -36,7 +35,7 @@ epsilon = 0.1  # For the epsilon, use the values from the Batten paper:
 # alpha-beta-CROWN: mnist_cnn_a_adv: 0.3, mnist_conv_small_nat: 0.12
 dataset = "mnist"  # currently implemented: "mnist", "cifar10"
 network_folder = "small_mnist"  # mnist, small_mnist, self_trained_2_50_0.05, verigauge, alpha_beta_crown
-nn_file = "nips_lp.onnx"
+nn_file = "nips_sdp.onnx"
 path = os.path.join("..", "sdpbab", network_folder, nn_file)  # path to NN file
 if dataset == "mnist":
     original_shape = [1, 28, 28]  # input shape for the network

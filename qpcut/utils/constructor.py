@@ -61,7 +61,12 @@ def construct_model(wts: typing.List[np.ndarray],
 
         for layer in range(1, n_layers):  # last layer is output layer so e.g. for 1 hidden 1 output n_layers=2
             x.append(m.addMVar(shape=sizes[layer], vtype=GRB.CONTINUOUS, name="x_" + str(layer)))
-            d.append(m.addMVar(shape=sizes[layer], vtype=GRB.BINARY, name="d_" + str(layer)))
+            # d.append(m.addMVar(shape=sizes[layer], vtype=GRB.BINARY, name="d_" + str(layer)))
+
+            # Use LP relaxation instead
+            d.append(m.addMVar(shape=sizes[layer], vtype=GRB.CONTINUOUS, name="d_" + str(layer)))
+            m.addConstr(d[layer] >= np.zeros((sizes[layer],)), "lower_binary_" + str(layer))
+            m.addConstr(d[layer] <= np.ones((sizes[layer],)), "upper_binary_" + str(layer))
 
             # ReLU Encoding Constraint 1: x_{i+1} >= W_i x_i + b_i
             m.addConstr(x[layer] - wts[layer-1] @ x[layer-1] >= bias[layer-1], "relax_1_l_" + str(layer))
