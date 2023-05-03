@@ -16,11 +16,12 @@ from qpcut.utils.compressor import compress_nn
 from qpcut.utils.constructor import construct_model
 from qpcut.utils.propagate_input import propagate_input
 
-dataset = "nips_sdp"
-epsilon = 0.1
-n_samples = 100
-n_classes = 10
-add_quadratic_cuts = True
+dataset = "nips_sdp"  # dataset to use for verification
+epsilon = 0.1  # epsilon to use in verification
+n_samples = 100  # number of samples to verify
+n_classes = 10  # number of classes in the dataset
+add_quadratic_cuts = True  # whether to add quadratic cuts or not
+max_cuts_per_layer = 20  # maximum number of quadratic cuts to add per layer
 
 base_path = os.path.join("data", "export", dataset + "_" + str(epsilon))
 total_time = 0
@@ -71,7 +72,8 @@ for i in range(n_samples):
 
     # Construct model once for each i, then only change the objective for each j and reoptimise
     construction_start = time.time()
-    m, x, d = construct_model(wts, bias, sizes, lpost, upost, lpre, upre, n_layers, input_image, add_quadratic_cuts)
+    m, x, d = construct_model(wts, bias, sizes, lpost, upost, lpre, upre, n_layers, input_image, add_quadratic_cuts,
+                              max_cuts_per_layer)
     image_time = time.time() - construction_start
     print("Model constructed in {:.2f} seconds".format(image_time))
     is_robust = True

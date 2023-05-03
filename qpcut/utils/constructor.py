@@ -37,7 +37,8 @@ def construct_model(wts: typing.List[np.ndarray],
                     upre: typing.List[np.ndarray],
                     n_layers: int,
                     input_image: np.ndarray,
-                    add_quadratic_cuts: bool) -> typing.Tuple[gp.Model, list, list]:
+                    add_quadratic_cuts: bool,
+                    max_cuts_per_layer: int) -> typing.Tuple[gp.Model, list, list]:
     """
     Construct a MIQP for NN verification using the cuts from the Kochdumper paper
     """
@@ -90,7 +91,8 @@ def construct_model(wts: typing.List[np.ndarray],
             if add_quadratic_cuts:
                 m.setParam(GRB.Param.NonConvex, 2)  # accept nonconvex quadratic constraints
                 qccand_ind, a1, a2, a3 = get_quadratic_coefficients(lpre, upre, layer)
-                for (count, j) in enumerate(qccand_ind):
+                n_to_add = min(len(qccand_ind), max_cuts_per_layer)
+                for (count, j) in enumerate(qccand_ind[:n_to_add, ]):
                     m.addConstr(
                         x[layer][j]
                         - a1[count] * x[layer-1] @ np.outer(wts[layer-1][j, :], wts[layer-1][j, :]) @ x[layer-1]
@@ -107,7 +109,7 @@ def construct_model(wts: typing.List[np.ndarray],
                 #      wts[layer - 1][qccand_ind[count], :] @ x[layer - 1]
                 #      <= a1[count] * bias[layer - 1][qccand_ind[count]] ** 2 +
                 #      a2[count] * bias[layer - 1][qccand_ind[count]] + a3[count]
-                #      for count in range(len(qccand_ind))),
+                #      for count in range(n_to_add)),
                 #     name="quadratic_l_{}".format(layer)
                 # )
 
